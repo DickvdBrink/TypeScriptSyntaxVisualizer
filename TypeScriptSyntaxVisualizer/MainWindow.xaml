@@ -3,11 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <avalonEdit:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Name="textEditor"
+            Grid.Column="0"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             FontSize="10pt"/>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Azure" />
+        <TextBlock Grid.Column="2">Properties</TextBlock>
     </Grid>
 </Window>

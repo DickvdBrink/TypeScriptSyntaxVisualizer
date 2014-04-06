@@ -70,6 +70,7 @@
     <Compile Include="TypeScript\LanguageVersion.cs" />
     <Compile Include="TypeScript\ModuleGenTarget.cs" />
     <Compile Include="TypeScript\NullLogger.cs" />
+    <Compile Include="TypeScript\ScriptSnapshot\StringScriptSnapshot.cs" />
     <Compile Include="TypeScript\Services\ILanguageServiceHost.cs" />
     <Compile Include="TypeScript\Services\ILanguageServicesDiagnostics.cs" />
     <Compile Include="TypeScript\Services\LanguageServiceHost.cs" />
@@ -120,9 +121,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TypeScript\ScriptSnapshot\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

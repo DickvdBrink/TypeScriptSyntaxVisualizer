@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TypeScriptSyntaxVisualizer.TypeScript.ScriptSnapshot;
 
 namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
@@ -99,7 +100,12 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 
         public IScriptSnapshot getScriptSnapshot(string fileName)
         {
-            throw new NotImplementedException();
+            ScriptInfo info;
+            if (scripts.TryGetValue(fileName, out info))
+            {
+                return new StringScriptSnapshot(info.Content);
+            }
+            throw new ArgumentException();
         }
 
         public string resolveRelativePath(string path, string directory)

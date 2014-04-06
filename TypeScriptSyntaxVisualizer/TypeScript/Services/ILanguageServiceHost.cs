@@ -8,8 +8,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
     interface ILanguageServiceHost : ILogger, IReferenceResolverHost
     {
-        //TypeScript.CompilationSettings
-        string getCompilationSettings();
+        CompilationSettings getCompilationSettings();
 
         string[] getScriptFileNames();
         int getScriptVersion(string fileName);

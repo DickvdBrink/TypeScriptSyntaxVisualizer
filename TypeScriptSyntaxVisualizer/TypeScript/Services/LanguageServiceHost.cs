@@ -9,7 +9,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
     class LanguageServiceHost : ILanguageServiceHost
     {
 
-        public string getCompilationSettings()
+        public CompilationSettings getCompilationSettings()
         {
             throw new NotImplementedException();
         }

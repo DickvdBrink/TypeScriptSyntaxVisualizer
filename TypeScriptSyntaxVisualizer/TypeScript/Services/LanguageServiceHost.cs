@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,24 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
     class LanguageServiceHost : ILanguageServiceHost
     {
-        Dictionary<string, ScriptInfo> scripts = new Dictionary<string, ScriptInfo>();
+        private CompilationSettings settings;
+        private Dictionary<string, ScriptInfo> scripts = new Dictionary<string, ScriptInfo>();
+        private ILogger logger;
+
+        public LanguageServiceHost(ILogger logger)
+        {
+            this.logger = logger;
+        }
+
+        public LanguageServiceHost(CompilationSettings settings, ILogger logger)
+            : this(logger)
+        {
+            this.settings = settings;
+        }
 
         public CompilationSettings getCompilationSettings()
         {
-            throw new NotImplementedException();
+            return settings ?? new CompilationSettings();
         }
 
         public string[] getScriptFileNames()
@@ -57,7 +71,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 
         public string getLocalizedDiagnosticMessages()
         {
-            throw new NotImplementedException();
+            return null;
         }
 
         #region IReferenceResolverHost
@@ -74,17 +88,17 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 
         public bool fileExists(string path)
         {
-            throw new NotImplementedException();
+            return File.Exists(path);
         }
 
         public bool directoryExists(string path)
         {
-            throw new NotImplementedException();
+            return Directory.Exists(path);
         }
 
         public string getParentDirectory(string path)
         {
-            throw new NotImplementedException();
+            return Directory.GetParent(path).FullName;
         }
 
         #endregion
@@ -93,32 +107,32 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 
         public bool information()
         {
-            throw new NotImplementedException();
+            return logger.information();
         }
 
         public bool debug()
         {
-            throw new NotImplementedException();
+            return logger.debug();
         }
 
         public bool warning()
         {
-            throw new NotImplementedException();
+            return logger.warning();
         }
 
         public bool error()
         {
-            throw new NotImplementedException();
+            return logger.error();
         }
 
         public bool fatal()
         {
-            throw new NotImplementedException();
+            return logger.fatal();
         }
 
         public void log(string s)
         {
-            throw new NotImplementedException();
+            logger.log(s);
         }
 
         #endregion

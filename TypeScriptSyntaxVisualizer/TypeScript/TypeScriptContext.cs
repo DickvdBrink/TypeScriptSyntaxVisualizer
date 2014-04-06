@@ -20,8 +20,10 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
             string script = File.ReadAllText(Path.Combine(currentPath, "Scripts", "typescriptServices.js"));
             context.Run(script);
 
-            LanguageServiceHost host = new LanguageServiceHost();
+            LanguageServiceHost host = new LanguageServiceHost(new NullLogger());
             context.SetParameter("host", host);
+
+            context.Run("new TypeScript.Services.LanguageService(host);");
         }
     }
 }

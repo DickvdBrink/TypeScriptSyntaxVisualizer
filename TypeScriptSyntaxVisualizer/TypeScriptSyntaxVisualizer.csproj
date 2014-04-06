@@ -69,6 +69,7 @@
     <Compile Include="TypeScript\IScriptSnapshot.cs" />
     <Compile Include="TypeScript\LanguageVersion.cs" />
     <Compile Include="TypeScript\ModuleGenTarget.cs" />
+    <Compile Include="TypeScript\NullLogger.cs" />
     <Compile Include="TypeScript\Services\ILanguageServiceHost.cs" />
     <Compile Include="TypeScript\Services\ILanguageServicesDiagnostics.cs" />
     <Compile Include="TypeScript\Services\LanguageServiceHost.cs" />

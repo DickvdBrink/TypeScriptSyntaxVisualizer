@@ -10,10 +10,4 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
     {
         void log(string content);
     }
-
-    /*
-    interface ILanguageServicesDiagnostics {
-        log(content: string): void;
-    }
-    */
 }

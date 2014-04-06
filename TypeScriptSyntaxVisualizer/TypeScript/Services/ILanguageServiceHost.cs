@@ -11,8 +11,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
         //TypeScript.CompilationSettings
         string getCompilationSettings();
 
-        //string[];
-        string getScriptFileNames();
+        string[] getScriptFileNames();
         int getScriptVersion(string fileName);
         bool getScriptIsOpen(string fileName);
         ByteOrderMark getScriptByteOrderMark(string fileName);

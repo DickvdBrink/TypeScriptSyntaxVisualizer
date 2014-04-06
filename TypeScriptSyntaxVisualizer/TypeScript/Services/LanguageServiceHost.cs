@@ -14,7 +14,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
             throw new NotImplementedException();
         }
 
-        public string getScriptFileNames()
+        public string[] getScriptFileNames()
         {
             throw new NotImplementedException();
         }

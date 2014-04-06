@@ -8,6 +8,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
     class LanguageServiceHost : ILanguageServiceHost
     {
+        Dictionary<string, ScriptInfo> scripts = new Dictionary<string, ScriptInfo>();
 
         public CompilationSettings getCompilationSettings()
         {
@@ -16,22 +17,37 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 
         public string[] getScriptFileNames()
         {
-            throw new NotImplementedException();
+            return scripts.Keys.ToArray();
         }
 
         public int getScriptVersion(string fileName)
         {
-            throw new NotImplementedException();
+            ScriptInfo info;
+            if(scripts.TryGetValue(fileName, out info))
+            {
+                return info.Version ;
+            }
+            throw new ArgumentException();
         }
 
         public bool getScriptIsOpen(string fileName)
         {
-            throw new NotImplementedException();
+            ScriptInfo info;
+            if (scripts.TryGetValue(fileName, out info))
+            {
+                return info.IsOpen;
+            }
+            throw new ArgumentException();
         }
 
         public ByteOrderMark getScriptByteOrderMark(string fileName)
         {
-            throw new NotImplementedException();
+            ScriptInfo info;
+            if (scripts.TryGetValue(fileName, out info))
+            {
+                return info.ByteOrderMark;
+            }
+            throw new ArgumentException();
         }
 
         public ILanguageServicesDiagnostics getDiagnosticsObject()
@@ -106,5 +122,14 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
         }
 
         #endregion
+
+        private class ScriptInfo
+        {
+            public string Filename;
+            public int Version;
+            public string Content;
+            public ByteOrderMark ByteOrderMark;
+            public bool IsOpen;
+        }
     }
 }

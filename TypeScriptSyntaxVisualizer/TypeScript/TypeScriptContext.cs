@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using TypeScriptSyntaxVisualizer.TypeScript.Services;
 
 namespace TypeScriptSyntaxVisualizer.TypeScript
 {
@@ -18,6 +19,9 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
             string currentPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             string script = File.ReadAllText(Path.Combine(currentPath, "Scripts", "typescriptServices.js"));
             context.Run(script);
+
+            LanguageServiceHost host = new LanguageServiceHost();
+            context.SetParameter("host", host);
         }
     }
 }

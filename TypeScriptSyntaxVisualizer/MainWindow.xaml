@@ -26,8 +26,16 @@
             SyntaxHighlighting="C#"
             FontSize="10pt" Grid.ColumnSpan="2" Margin="0,-6,5,6.333"/>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Azure" />
-            <TextBlock Grid.Column="2">Properties</TextBlock>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontWeight="Bold">Syntax Tree</TextBlock>
+                <TextBlock Grid.Row="1" FontWeight="Bold">Properties</TextBlock>
+            </Grid>
+
         </Grid>
-        
+
     </Grid>
 </Window>

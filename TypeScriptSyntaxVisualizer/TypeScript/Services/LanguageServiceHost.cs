@@ -24,6 +24,25 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
             this.settings = settings;
         }
 
+        public void RemoveFile(string filename)
+        {
+            this.scripts.Remove(filename);
+        }
+
+        public void OpenFile(string filename, string content)
+        {
+            this.scripts.Add(filename, new ScriptInfo()
+            {
+                ByteOrderMark = ByteOrderMark.None,
+                Content = content,
+                Filename = filename,
+                IsOpen = true,
+                Version = 1
+            });
+        }
+
+        #region ILanguageServiceHost
+
         public CompilationSettings getCompilationSettings()
         {
             return settings ?? new CompilationSettings();
@@ -39,7 +58,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
             ScriptInfo info;
             if(scripts.TryGetValue(fileName, out info))
             {
-                return info.Version ;
+                return info.Version;
             }
             throw new ArgumentException();
         }
@@ -73,6 +92,8 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
         {
             return null;
         }
+
+        #endregion
 
         #region IReferenceResolverHost
 

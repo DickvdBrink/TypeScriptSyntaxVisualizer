@@ -3,19 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <avalonEdit:TextEditor
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <ToolBarTray>
+            <ToolBar ToolBarTray.IsLocked="True">
+                <Button Click="OnOpenButtonClick">Open</Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <avalonEdit:TextEditor
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             Name="textEditor"
             Grid.Column="0"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
-            FontSize="10pt"/>
-        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Azure" />
-        <TextBlock Grid.Column="2">Properties</TextBlock>
+            FontSize="10pt" Grid.ColumnSpan="2" Margin="0,-6,5,6.333"/>
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Azure" />
+            <TextBlock Grid.Column="2">Properties</TextBlock>
+        </Grid>
+        
     </Grid>
 </Window>

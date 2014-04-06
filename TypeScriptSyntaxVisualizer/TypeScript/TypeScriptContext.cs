@@ -13,6 +13,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
     public class TypeScriptContext
     {
         JavascriptContext context = new JavascriptContext();
+        internal LanguageServiceHost host;
 
         public TypeScriptContext()
         {
@@ -20,10 +21,10 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
             string script = File.ReadAllText(Path.Combine(currentPath, "Scripts", "typescriptServices.js"));
             context.Run(script);
 
-            LanguageServiceHost host = new LanguageServiceHost(new NullLogger());
+            host = new LanguageServiceHost(new NullLogger());
             context.SetParameter("host", host);
 
-            context.Run("new TypeScript.Services.LanguageService(host);");
+            context.Run("var ls = new TypeScript.Services.LanguageService(host);");
         }
     }
 }

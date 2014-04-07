@@ -32,9 +32,19 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" FontWeight="Bold">Syntax Tree</TextBlock>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" FontWeight="Bold" Margin="5">Syntax Tree</TextBlock>
+                    <TreeView Grid.Row="1" >
+                    </TreeView>
+                </Grid>
                 <GridSplitter Grid.Row="1" Height="5" HorizontalAlignment="Stretch" ResizeDirection="Rows" Background="Azure" />
-                <TextBlock Grid.Row="2" FontWeight="Bold">Properties</TextBlock>
+                <StackPanel Grid.Row="2">
+                    <TextBlock FontWeight="Bold" Margin="5">Properties</TextBlock>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

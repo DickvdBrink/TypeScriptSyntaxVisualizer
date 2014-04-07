@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TypeScriptSyntaxVisualizer.TypeScript.ScriptSnapshot
 {
@@ -27,7 +23,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.ScriptSnapshot
 
         public int[] getLineStartPositions()
         {
-            throw new NotImplementedException();
+            return TextUtilities.ParseLineStarts(this.text);
         }
 
         public string getTextChangeRangeSinceVersion(int scriptVersion)

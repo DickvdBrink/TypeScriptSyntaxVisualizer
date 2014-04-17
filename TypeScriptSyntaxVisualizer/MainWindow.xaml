@@ -19,12 +19,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <avalonEdit:TextEditor
-            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-            Name="textEditor"
-            Grid.Column="0"
-            FontFamily="Consolas"
-            SyntaxHighlighting="C#"
-            FontSize="10pt" Grid.ColumnSpan="2" />
+                xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+                Name="textEditor"
+                Grid.Column="0"
+                FontFamily="Consolas"
+                SyntaxHighlighting="C#"
+                ShowLineNumbers="True"
+                FontSize="10pt" Grid.ColumnSpan="2"/>
             <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Center" Background="Azure" />
             <Grid Grid.Column="2">
                 <Grid.RowDefinitions>

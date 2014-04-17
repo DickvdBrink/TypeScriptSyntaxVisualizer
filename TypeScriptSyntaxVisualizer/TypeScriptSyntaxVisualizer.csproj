@@ -67,6 +67,7 @@
     <Compile Include="TypeScript\ILogger.cs" />
     <Compile Include="TypeScript\IReferenceResolverHost.cs" />
     <Compile Include="TypeScript\IScriptSnapshot.cs" />
+    <Compile Include="TypeScript\ISyntaxVisitor.cs" />
     <Compile Include="TypeScript\LanguageVersion.cs" />
     <Compile Include="TypeScript\ModuleGenTarget.cs" />
     <Compile Include="TypeScript\NullLogger.cs" />

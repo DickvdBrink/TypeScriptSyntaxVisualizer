@@ -23,6 +23,7 @@
                 xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
                 Name="textEditor"
                 Grid.Column="0"
+                IsReadOnly="True"
                 FontFamily="Consolas"
                 SyntaxHighlighting="C#"
                 ShowLineNumbers="True"

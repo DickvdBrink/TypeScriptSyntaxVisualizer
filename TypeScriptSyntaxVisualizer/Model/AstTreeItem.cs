@@ -55,12 +55,11 @@ namespace TypeScriptSyntaxVisualizer.Model
             {
                 if(properties == null)
                 {
-                    var tmp = (from item in json
+                    properties = (from item in json
                             where item is JProperty
                             let token = item as JProperty
-                            where  !(token.Value is JArray || token.Value is JObject)
+                            where (token.Value is JValue)
                             select token).ToDictionary(i => i.Name, i => i.Value.ToString());
-                    properties = tmp;
                 }
                 return properties;
             }

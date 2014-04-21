@@ -12,7 +12,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
 {
     public class TypeScriptContext
     {
-        JavascriptContext context = new JavascriptContext();
+        public JavascriptContext context = new JavascriptContext();
         internal LanguageServiceHost host;
 
         public TypeScriptContext()

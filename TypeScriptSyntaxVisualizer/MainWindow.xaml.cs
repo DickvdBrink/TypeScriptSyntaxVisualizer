@@ -32,7 +32,7 @@ namespace TypeScriptSyntaxVisualizer
             {
                 string allText = File.ReadAllText(dlg.FileName);
                 textEditor.Document.Text = allText;
-                context.OpenFile(dlg.SafeFileName, allText);
+                context.OpenFile(dlg.FileName, allText);
             }
         }
     }

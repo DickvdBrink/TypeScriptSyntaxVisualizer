@@ -35,7 +35,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
         {
             host.OpenFile(filename, text);
 
-            string tree = context.Run("JSON.stringify(ls.getSyntaxTree('" + filename + "'), null, 4)") as string;
+            string tree = context.Run("JSON.stringify(ls.getSyntaxTree('" + filename.Replace("\\", "\\\\") + "'), null, 4)") as string;
             JObject treeObj = JObject.Parse(tree);
             this.SyntaxTree.Clear();
             this.SyntaxTree.Add(new AstTreeItem(treeObj["sourceUnit"]));

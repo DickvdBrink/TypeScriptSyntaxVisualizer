@@ -55,14 +55,11 @@ namespace TypeScriptSyntaxVisualizer.Model
             {
                 if(properties == null)
                 {
-                    var tmp = new Dictionary<string, string>();
-                    foreach(var item in json.OfType<JProperty>().Where((token) =>
-                    {
-                        return !(token.Value is JArray || token.Value is JObject);
-                    }))
-                    {
-                        tmp.Add(item.Name, item.Value.ToString());
-                    }
+                    var tmp = (from item in json
+                            where item is JProperty
+                            let token = item as JProperty
+                            where  !(token.Value is JArray || token.Value is JObject)
+                            select token).ToDictionary(i => i.Name, i => i.Value.ToString());
                     properties = tmp;
                 }
                 return properties;

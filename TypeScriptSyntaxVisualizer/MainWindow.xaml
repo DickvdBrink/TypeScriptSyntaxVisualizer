@@ -59,8 +59,8 @@
                     <DataGrid Grid.Row="1" AutoGenerateColumns="False" HeadersVisibility="None" ItemsSource="{Binding ElementName=astTree, 
                               Path=SelectedValue.Properties}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Key" Binding="{Binding Key}" />
-                            <DataGridTextColumn Header="value" Binding="{Binding Value}" />
+                            <DataGridTextColumn Width="*" Binding="{Binding Key}" />
+                            <DataGridTextColumn Width="*" Binding="{Binding Value}" />
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

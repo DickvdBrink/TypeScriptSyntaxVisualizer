@@ -15,7 +15,7 @@ using TypeScriptSyntaxVisualizer.TypeScript;
 namespace TypeScriptSyntaxVisualizer
 {
     /// <summary>
-    /// Interaction logic for Mai   nWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -58,6 +58,11 @@ namespace TypeScriptSyntaxVisualizer
             OpenFileDialog dlg = new OpenFileDialog();
             if (dlg.ShowDialog() == true)
             {
+                var files = context.Host.getScriptFileNames();
+                for(var i =0; i < files.Length; i++)
+                {
+                    context.Host.RemoveFile(files[i]);
+                }
                 string allText = File.ReadAllText(dlg.FileName);
                 textEditor.Document.Text = allText;
                 context.OpenFile(dlg.FileName, allText);

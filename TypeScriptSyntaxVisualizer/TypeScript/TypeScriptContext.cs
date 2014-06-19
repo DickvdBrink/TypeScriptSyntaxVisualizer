@@ -15,7 +15,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
 {
     public class TypeScriptContext
     {
-        private LanguageServiceHost host;
+        internal LanguageServiceHost Host;
         private JavascriptContext context = new JavascriptContext();
         public ObservableCollection<AstTreeItem> SyntaxTree = new ObservableCollection<AstTreeItem>();
 
@@ -25,20 +25,25 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
             string script = File.ReadAllText(Path.Combine(currentPath, "Scripts", "typescriptServices.js"));
             context.Run(script);
 
-            host = new LanguageServiceHost(new NullLogger());
-            context.SetParameter("host", host);
+            Host = new LanguageServiceHost(new NullLogger());
+            context.SetParameter("host", Host);
 
             context.Run("var ls = new TypeScript.Services.LanguageService(host);");
         }
 
         public void OpenFile(string filename, string text)
         {
-            host.OpenFile(filename, text);
+            Host.OpenFile(filename, text);
 
             string tree = context.Run("JSON.stringify(ls.getSyntaxTree('" + filename.Replace("\\", "\\\\") + "'), null, 4)") as string;
             JObject treeObj = JObject.Parse(tree);
             this.SyntaxTree.Clear();
             this.SyntaxTree.Add(new AstTreeItem(treeObj["sourceUnit"]));
+        }
+
+        public void RemoveFile(string filename)
+        {
+            Host.RemoveFile(filename);
         }
     }
 }

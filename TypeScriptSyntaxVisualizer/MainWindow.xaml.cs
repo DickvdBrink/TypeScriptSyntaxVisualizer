@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using TypeScriptSyntaxVisualizer.Editor;
 using TypeScriptSyntaxVisualizer.Model;
 using TypeScriptSyntaxVisualizer.TypeScript;
@@ -43,11 +44,11 @@ namespace TypeScriptSyntaxVisualizer
             AstTreeItem item = e.NewValue as AstTreeItem;
             if (item != null)
             {
-                if (item.Properties.ContainsKey("start") && item.Properties.ContainsKey("end"))
+                if (item.Properties.ContainsKey("fullStart") && item.Properties.ContainsKey("fullEnd"))
                 {
-                    int start = int.Parse(item.Properties["start"]);
-                    int end = int.Parse(item.Properties["end"]);
-                    OffsetColorizer oc = new OffsetColorizer(start, end);
+                    int start = int.Parse(item.Properties["fullStart"]);
+                    int end = int.Parse(item.Properties["fullEnd"]);
+                    OffsetColorizer oc = new OffsetColorizer(Brushes.Azure, start, end);
                     lineTransformers.Add(oc);
                 }
             }
@@ -59,7 +60,9 @@ namespace TypeScriptSyntaxVisualizer
             if (dlg.ShowDialog() == true)
             {
                 var files = context.Host.getScriptFileNames();
-                for(var i =0; i < files.Length; i++)
+                // Remove all files (we only show one), so opening the same files doesn't crash.
+                // When we have a multidocument interface we could make this better
+                for (var i = 0; i < files.Length; i++)
                 {
                     context.Host.RemoveFile(files[i]);
                 }

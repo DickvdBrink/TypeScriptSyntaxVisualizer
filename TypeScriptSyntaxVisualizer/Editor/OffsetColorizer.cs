@@ -12,26 +12,30 @@ namespace TypeScriptSyntaxVisualizer.Editor
     public class OffsetColorizer : DocumentColorizingTransformer
     {
 
-        public int StartOffset { get; set; }
-        public int EndOffset { get; set; }
+        public Brush Brush { get; private set; }
+        public int StartOffset { get; private set; }
+        public int EndOffset { get; private set; }
 
-        public OffsetColorizer(int start, int end)
+        public OffsetColorizer(Brush brush, int start, int end)
         {
+            this.Brush = brush;
             this.StartOffset = start;
             this.EndOffset = end;
         }
+
         protected override void ColorizeLine(DocumentLine line)
         {
             if (line.Length == 0)
                 return;
 
-            if (line.Offset < StartOffset || line.Offset > EndOffset)
+            if (StartOffset > line.EndOffset || EndOffset < line.Offset)
                 return;
 
             int start = line.Offset > StartOffset ? line.Offset : StartOffset;
             int end = EndOffset > line.EndOffset ? line.EndOffset : EndOffset;
 
-            ChangeLinePart(start, end, element => element.TextRunProperties.SetBackgroundBrush(Brushes.Azure));
+            ChangeLinePart(start, end, element => element.TextRunProperties.SetBackgroundBrush(this.Brush));
         }
+
     }
 }

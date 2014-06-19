@@ -157,3 +157,5 @@ $RECYCLE.BIN/
 
 # nuget package folder
 /packages
+
+/*.sln.ide/

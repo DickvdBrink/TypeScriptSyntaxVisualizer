@@ -30,7 +30,8 @@ namespace TypeScriptSyntaxVisualizer
 
             textEditor.TextArea.Caret.PositionChanged += (_, __) =>
             {
-                string labelText = string.Format("Position: {0}", textEditor.CaretOffset);
+                var caret = textEditor.TextArea.Caret;
+                string labelText = string.Format("Line: {0} Col: {1} Position: {2}", caret.Line, caret.Column, caret.Offset);
                 lbStatusBarCaretPosition.Content = labelText;
             };
         }

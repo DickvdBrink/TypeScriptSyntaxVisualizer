@@ -7,6 +7,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <ToolBarTray>
             <ToolBar ToolBarTray.IsLocked="True">
@@ -67,5 +68,8 @@
                 </Grid>
             </Grid>
         </Grid>
+        <StatusBar Grid.Row="3" HorizontalAlignment="Stretch" Width="Auto">
+            <Label x:Name="lbStatusBarCaretPosition" Content=""  Padding="0" />
+        </StatusBar>
     </Grid>
 </Window>

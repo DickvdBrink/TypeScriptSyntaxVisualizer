@@ -27,6 +27,12 @@ namespace TypeScriptSyntaxVisualizer
             InitializeComponent();
             astTree.ItemsSource = context.SyntaxTree;
             astTree.SelectedItemChanged += AstTree_SelectedItemChanged;
+
+            textEditor.TextArea.Caret.PositionChanged += (_, __) =>
+            {
+                string labelText = string.Format("Position: {0}", textEditor.CaretOffset);
+                lbStatusBarCaretPosition.Content = labelText;
+            };
         }
 
         private void AstTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)

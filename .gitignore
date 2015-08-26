@@ -159,3 +159,7 @@ $RECYCLE.BIN/
 /packages
 
 /*.sln.ide/
+
+
+# Node/NPM
+node_modules/

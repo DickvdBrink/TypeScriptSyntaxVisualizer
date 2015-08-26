@@ -68,19 +68,19 @@
     </ApplicationDefinition>
     <Compile Include="Editor\OffsetColorizer.cs" />
     <Compile Include="Model\AstTreeItem.cs" />
-    <Compile Include="TypeScript\ByteOrderMark.cs" />
-    <Compile Include="TypeScript\CompilationSettings.cs" />
-    <Compile Include="TypeScript\ILogger.cs" />
-    <Compile Include="TypeScript\IReferenceResolverHost.cs" />
+    <Compile Include="TypeScript\CompilerOptions.cs" />
     <Compile Include="TypeScript\IScriptSnapshot.cs" />
-    <Compile Include="TypeScript\LanguageVersion.cs" />
-    <Compile Include="TypeScript\ModuleGenTarget.cs" />
-    <Compile Include="TypeScript\NullLogger.cs" />
+    <Compile Include="TypeScript\JsxEmit.cs" />
+    <Compile Include="TypeScript\ModuleKind.cs" />
+    <Compile Include="TypeScript\ModuleResolutionKind.cs" />
+    <Compile Include="TypeScript\NewLineKind.cs" />
     <Compile Include="TypeScript\ScriptSnapshot\StringScriptSnapshot.cs" />
+    <Compile Include="TypeScript\ScriptTarget.cs" />
+    <Compile Include="TypeScript\Services\HostCancellationToken.cs" />
     <Compile Include="TypeScript\Services\ILanguageServiceHost.cs" />
-    <Compile Include="TypeScript\Services\ILanguageServicesDiagnostics.cs" />
     <Compile Include="TypeScript\Services\LanguageServiceHost.cs" />
-    <Compile Include="TypeScript\TextUtilities.cs" />
+    <Compile Include="TypeScript\TextChangeRange.cs" />
+    <Compile Include="TypeScript\TextSpan.cs" />
     <Compile Include="TypeScript\TypeScriptContext.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

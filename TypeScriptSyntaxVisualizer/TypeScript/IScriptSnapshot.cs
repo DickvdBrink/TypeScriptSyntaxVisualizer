@@ -10,8 +10,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
     {
         string getText(int start, int end);
         int getLength();
-        int[] getLineStartPositions();
-        //TextChangeRange
-        string getTextChangeRangeSinceVersion(int scriptVersion);
+        TextChangeRange getChangeRange(IScriptSnapshot oldSnapshot);
+        void dispose();
     }
 }

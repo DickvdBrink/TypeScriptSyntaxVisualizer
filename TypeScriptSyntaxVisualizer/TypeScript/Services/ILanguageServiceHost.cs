@@ -6,15 +6,25 @@ using System.Threading.Tasks;
 
 namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
-    interface ILanguageServiceHost : ILogger, IReferenceResolverHost
+    interface ILanguageServiceHost
     {
-        CompilationSettings getCompilationSettings();
+        CompilerOptions getCompilationSettings();
 
+        string getNewLine();
+        string getProjectVersion();
         string[] getScriptFileNames();
-        int getScriptVersion(string fileName);
-        bool getScriptIsOpen(string fileName);
-        ByteOrderMark getScriptByteOrderMark(string fileName);
-        ILanguageServicesDiagnostics getDiagnosticsObject();
+        string getScriptVersion(string filename);
+        IScriptSnapshot getScriptSnapshot(string filename);
+
         string getLocalizedDiagnosticMessages();
+        HostCancellationToken getCancellationToken();
+        string getCurrentDirectory();
+        string getDefaultLibFileName(CompilerOptions options);
+
+        void log(string s);
+        void trace(string s);
+        void error(string s);
+        bool useCaseSensitiveFileNames();
+        string[] resolveModuleNames(string[] moduleNames, string containingFile);
     }    
 }

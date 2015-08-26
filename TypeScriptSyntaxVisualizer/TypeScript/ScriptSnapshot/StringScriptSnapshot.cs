@@ -21,12 +21,12 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.ScriptSnapshot
             return this.text.Length;
         }
 
-        public int[] getLineStartPositions()
+        public TextChangeRange getChangeRange(IScriptSnapshot oldSnapshot)
         {
-            return TextUtilities.ParseLineStarts(this.text);
+            throw new NotImplementedException();
         }
 
-        public string getTextChangeRangeSinceVersion(int scriptVersion)
+        public void dispose()
         {
             throw new NotImplementedException();
         }

@@ -9,19 +9,14 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
 {
     class LanguageServiceHost : ILanguageServiceHost
     {
-        private CompilationSettings settings;
+        private CompilerOptions settings;
         private Dictionary<string, ScriptInfo> scripts = new Dictionary<string, ScriptInfo>();
-        private ILogger logger;
+        private HostCancellationToken token;
 
-        public LanguageServiceHost(ILogger logger)
-        {
-            this.logger = logger;
-        }
-
-        public LanguageServiceHost(CompilationSettings settings, ILogger logger)
-            : this(logger)
+        public LanguageServiceHost(CompilerOptions settings)
         {
             this.settings = settings;
+            token = new HostCancellationToken();
         }
 
         public void RemoveFile(string filename)
@@ -33,19 +28,18 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
         {
             this.scripts.Add(filename, new ScriptInfo()
             {
-                ByteOrderMark = ByteOrderMark.None,
                 Content = content,
                 Filename = filename,
                 IsOpen = true,
-                Version = 1
+                Version = "1"
             });
         }
 
         #region ILanguageServiceHost
 
-        public CompilationSettings getCompilationSettings()
+        public CompilerOptions getCompilationSettings()
         {
-            return settings ?? new CompilationSettings();
+            return settings ?? new CompilerOptions();
         }
 
         public string[] getScriptFileNames()
@@ -53,7 +47,7 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
             return scripts.Keys.ToArray();
         }
 
-        public int getScriptVersion(string fileName)
+        public string getScriptVersion(string fileName)
         {
             ScriptInfo info;
             if(scripts.TryGetValue(fileName, out info))
@@ -63,102 +57,69 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
             throw new ArgumentException();
         }
 
-        public bool getScriptIsOpen(string fileName)
-        {
-            ScriptInfo info;
-            if (scripts.TryGetValue(fileName, out info))
-            {
-                return info.IsOpen;
-            }
-            throw new ArgumentException();
-        }
-
-        public ByteOrderMark getScriptByteOrderMark(string fileName)
-        {
-            ScriptInfo info;
-            if (scripts.TryGetValue(fileName, out info))
-            {
-                return info.ByteOrderMark;
-            }
-            throw new ArgumentException();
-        }
-
-        public ILanguageServicesDiagnostics getDiagnosticsObject()
-        {
-            throw new NotImplementedException();
-        }
-
         public string getLocalizedDiagnosticMessages()
         {
             return null;
         }
 
-        #endregion
+        public string getNewLine()
+        {
+            throw new NotImplementedException();
+        }
 
-        #region IReferenceResolverHost
+        public string getProjectVersion()
+        {
+            throw new NotImplementedException();
+        }
 
-        public IScriptSnapshot getScriptSnapshot(string fileName)
+        public IScriptSnapshot getScriptSnapshot(string filename)
         {
             ScriptInfo info;
-            if (scripts.TryGetValue(fileName, out info))
+            if (scripts.TryGetValue(filename, out info))
             {
                 return new StringScriptSnapshot(info.Content);
             }
             throw new ArgumentException();
         }
 
-        public string resolveRelativePath(string path, string directory)
+        public HostCancellationToken getCancellationToken()
+        {
+            return token;
+        }
+
+        public string getCurrentDirectory()
         {
             throw new NotImplementedException();
         }
 
-        public bool fileExists(string path)
+        public string getDefaultLibFileName(CompilerOptions options)
         {
-            return File.Exists(path);
-        }
-
-        public bool directoryExists(string path)
-        {
-            return Directory.Exists(path);
-        }
-
-        public string getParentDirectory(string path)
-        {
-            return Directory.GetParent(path).FullName;
-        }
-
-        #endregion
-
-        #region ILogger
-
-        public bool information()
-        {
-            return logger.information();
-        }
-
-        public bool debug()
-        {
-            return logger.debug();
-        }
-
-        public bool warning()
-        {
-            return logger.warning();
-        }
-
-        public bool error()
-        {
-            return logger.error();
-        }
-
-        public bool fatal()
-        {
-            return logger.fatal();
+            throw new NotImplementedException();
         }
 
         public void log(string s)
         {
-            logger.log(s);
+            throw new NotImplementedException();
+        }
+
+        public void trace(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void error(string s)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool useCaseSensitiveFileNames()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string[] resolveModuleNames(string[] moduleNames, string containingFile)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -166,9 +127,8 @@ namespace TypeScriptSyntaxVisualizer.TypeScript.Services
         private class ScriptInfo
         {
             public string Filename;
-            public int Version;
+            public string Version;
             public string Content;
-            public ByteOrderMark ByteOrderMark;
             public bool IsOpen;
         }
     }

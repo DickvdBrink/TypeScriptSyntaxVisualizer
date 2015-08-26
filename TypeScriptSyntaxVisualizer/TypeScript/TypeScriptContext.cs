@@ -25,17 +25,17 @@ namespace TypeScriptSyntaxVisualizer.TypeScript
             string script = File.ReadAllText(Path.Combine(currentPath, "Scripts", "typescriptServices.js"));
             context.Run(script);
 
-            Host = new LanguageServiceHost(new NullLogger());
+            Host = new LanguageServiceHost(null);
             context.SetParameter("host", Host);
 
-            context.Run("var ls = new TypeScript.Services.LanguageService(host);");
+            context.Run("var ls = ts.createLanguageService(host);");
         }
 
         public void OpenFile(string filename, string text)
         {
             Host.OpenFile(filename, text);
 
-            string tree = context.Run("JSON.stringify(ls.getSyntaxTree('" + filename.Replace("\\", "\\\\") + "'), null, 4)") as string;
+            string tree = context.Run("ls.getSourceFile('" + filename.Replace("\\", "\\\\") + "');") as string;
             JObject treeObj = JObject.Parse(tree);
             this.SyntaxTree.Clear();
             this.SyntaxTree.Add(new AstTreeItem(treeObj["sourceUnit"]));
